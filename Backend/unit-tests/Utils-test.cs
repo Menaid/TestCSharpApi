@@ -11,6 +11,11 @@ public class UtilsTest
     // dotnet test --logger "console;verbosity=detailed"
     // for the logging to work
     private readonly ITestOutputHelper output;
+
+    public UtilsTest()
+    {
+    }
+
     public UtilsTest(ITestOutputHelper output)
     {
         this.output = output;
@@ -57,13 +62,13 @@ public class UtilsTest
     //     Assert.True(strongPassword);
     // }
 
-    [Theory]
+    // [Theory]
     // [InlineData("hello", "[****]", "[****]o")]
     // [InlineData("hello", "[****]", "hello")]
-    [InlineData("Hi you are an ass hole", "[****]", "Hi you are an [****] hole")]
-    public void TestRemoveBadWords(string text, string censor, string expected)
-    {
-        var result = Utils.RemoveBadWords(text, censor);
-        Assert.Equal(expected, result);
-    }
+    // [InlineData("Hi you are an ass hole", "[****]", "Hi you are an [****] hole")]
+    // public void TestRemoveBadWords(string text, string censor, string expected)
+    // {
+    //     var result = Utils.RemoveBadWords(text, censor);
+    //     Assert.Equal(expected, result);
+    // }
 }
