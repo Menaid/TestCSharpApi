@@ -1,27 +1,6 @@
-using Xunit;
-using Xunit.Abstractions;
-
 namespace WebApp;
-public class UtilsTest
+public class UtilsTest(Xlog Console)
 {
-    // The following lines are needed to get 
-    // output to the Console to work in xUnit tests!
-    // (also needs the using Xunit.Abstractions)
-    // Note: You need to use the following command line command 
-    // dotnet test --logger "console;verbosity=detailed"
-    // for the logging to work
-    private readonly ITestOutputHelper output;
-
-    public UtilsTest()
-    {
-    }
-
-    public UtilsTest(ITestOutputHelper output)
-    {
-        this.output = output;
-    }
-
-
     // [Fact]
     // // A simple initial example
     // public void TestSumInt()
@@ -62,13 +41,15 @@ public class UtilsTest
     //     Assert.True(strongPassword);
     // }
 
-    // [Theory]
-    // [InlineData("hello", "[****]", "[****]o")]
-    // [InlineData("hello", "[****]", "hello")]
-    // [InlineData("Hi you are an ass hole", "[****]", "Hi you are an [****] hole")]
-    // public void TestRemoveBadWords(string text, string censor, string expected)
-    // {
-    //     var result = Utils.RemoveBadWords(text, censor);
-    //     Assert.Equal(expected, result);
-    // }
+    [Theory]
+    [InlineData("hello", "[****]", "[****]o")]
+    [InlineData("hello", "[****]", "hello")]
+    [InlineData("Hi you are an ass hole", "[****]", "Hi you are an [****] hole")]
+    [InlineData("Hi, how are you?", "[****]", "Hi, how are you?")]
+    public void RemoveBadWordsAlt(string text, string censor, string expected)
+    {
+        var result = Utils.RemoveBadWordsAlt(text, censor);
+        Assert.Equal(expected, result);
+    }
+
 }
