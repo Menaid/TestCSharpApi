@@ -51,4 +51,5 @@ public class UtilsTest(Xlog Console)
         var result = Utils.RemoveBadWordsAlt(text, censor);
         Assert.Equal(expected, result);
     }
+
 }
