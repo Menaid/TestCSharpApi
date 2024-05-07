@@ -14,7 +14,6 @@ public static class Utils
     //     Arr successFullyWrittenUsers = Arr();
     //     foreach (var user in mockUsers)
     //     {
-    //         user.password = "12345678";
     //         var result = SQLQueryOne(
     //             @"INSERT INTO users(firstName,lastName,email,password)
     //             VALUES($firstName, $lastName, $email, $password)
@@ -52,16 +51,18 @@ public static class Utils
     //     return strongPassword;
     // }
 
-   // public record TestBadWords(List<string> badwords);
-    public static string RemoveBadWords(string inputWord, string replacementWord)
+   public record TestBadWords(List<string> badwords);
+
+    public static string RemoveBadWordsAlt(string inputWord, string replacementWord)
     {
-        var readBadWords = File.ReadAllText(Path.Combine("json","bad-words.json"));
-        Arr badwords = JSON.Parse(readBadWords).badwords;
-        foreach(var word in badwords.OrderByDescending(word => word.ToString().Length))
+        var readBadWords = File.ReadAllText(FilePath("json", "bad-words.json"));
+        var badwords = JsonSerializer.Deserialize<TestBadWords>(readBadWords);
+
+        foreach (var word in badwords.badwords.OrderByDescending(x => x.Length))
         {
-            inputWord = inputWord.Replace(inputWord, replacementWord, StringComparison.InvariantCultureIgnoreCase);
-            Log(inputWord);
+            inputWord = inputWord.Replace(word, replacementWord, StringComparison.InvariantCultureIgnoreCase);
         }
+
         return inputWord;
     }
 }
