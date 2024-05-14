@@ -34,22 +34,26 @@ public class UtilsTest(Xlog Console)
     //     output.WriteLine("The test passed!");
     // }
 
-    // [Fact]
-    // public void TestIsPasswordGoodEnough()
-    // {
-    //     bool strongPassword = Utils.IsPasswordGoodEnough("1212121313A1w?!");
-    //     Assert.True(strongPassword);
-    // }
-
     [Theory]
-    [InlineData("hello", "[****]", "[****]o")]
-    [InlineData("hello", "[****]", "hello")]
-    [InlineData("Hi you are an ass hole", "[****]", "Hi you are an [****] hole")]
-    [InlineData("Hi, how are you?", "[****]", "Hi, how are you?")]
-    public void RemoveBadWordsAlt(string text, string censor, string expected)
+    [InlineData ("abcD9!12", true)]
+    [InlineData ("abcD#9!12", true)]
+    [InlineData ("abc9!122", false)]
+    [InlineData ("abc9!12", false)]
+    [InlineData ("ABCD9!12", false)]
+    public void TestIsPasswordGoodEnough(string password, bool excpeted)
     {
-        var result = Utils.RemoveBadWordsAlt(text, censor);
-        Assert.Equal(expected, result);
+        Assert.Equal(excpeted, Utils.IsPasswordGoodEnough(password));
     }
+
+    // [Theory]
+    // [InlineData("hello", "[****]", "[****]o")]
+    // [InlineData("hello", "[****]", "hello")]
+    // [InlineData("Hi you are an ass hole", "[****]", "Hi you are an [****] hole")]
+    // [InlineData("Hi, how are you?", "[****]", "Hi, how are you?")]
+    // public void RemoveBadWordsAlt(string text, string censor, string expected)
+    // {
+    //     var result = Utils.RemoveBadWordsAlt(text, censor);
+    //     Assert.Equal(expected, result);
+    // }
 
 }

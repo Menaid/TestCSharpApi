@@ -31,25 +31,25 @@ public static class Utils
     // }
 
 
-    // public static bool IsPasswordGoodEnough(string password)
-    // {
-    //     bool strongPassword = false;
-    //     if (password.Length > 7)
-    //     {
-    //         if (password.ToCharArray().Any(char.IsSymbol) || password.ToCharArray().Any(char.IsPunctuation)
-    //         && password.ToCharArray().Any(char.IsUpper)
-    //         && password.ToCharArray().Any(char.IsLower)
-    //         && password.ToCharArray().Any(char.IsDigit))
-    //         {
-    //             strongPassword = true;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         strongPassword = false;
-    //     }
-    //     return strongPassword;
-    // }
+    public static bool IsPasswordGoodEnough(string password)
+    {
+        bool strongPassword = false;
+        if (password.Length > 7)
+        {
+            if (password.ToCharArray().Any(char.IsSymbol) || password.ToCharArray().Any(char.IsPunctuation)
+            && password.ToCharArray().Any(char.IsUpper)
+            && password.ToCharArray().Any(char.IsLower)
+            && password.ToCharArray().Any(char.IsDigit))
+            {
+                strongPassword = true;
+            }
+        }
+        else
+        {
+            strongPassword = false;
+        }
+        return strongPassword;
+    }
 
    public record TestBadWords(List<string> badwords);
 
