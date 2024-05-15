@@ -4,3 +4,4 @@ obj
 Backend/_db.sqlite3
 Dyndata
 .fake
+node_modules

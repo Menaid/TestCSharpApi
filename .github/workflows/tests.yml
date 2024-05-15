@@ -1,10 +1,10 @@
-name: Run unit tests
+name: .NET Core Desktop
 
 on:
   push:
-    branches: [ "feature-unit-testing" ]
+    branches: [ "feature-unit-testing-play" ]
   pull_request:
-    branches: [ "feature-unit-testing" ]
+    branches: [ "feature-unit-testing-play" ]
 
 jobs:
 
@@ -15,11 +15,11 @@ jobs:
         configuration: [Debug]
 
     runs-on: windows-latest  
-
+                            
     env:
       Solution_Name: Backend.sln
       Test_Project_Path: Backend
-
+  
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -39,3 +39,6 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test --logger "console;verbosity=detailed"
+
+
+    
