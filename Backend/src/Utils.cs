@@ -99,6 +99,19 @@ public static class Utils
     //     return removedMockUsers;
     // }
 
+
+    public static Obj CountDomainsFromUseremails()
+    {
+        Arr domians = SQLQueryOne("SELECT SUBSTRING(email, INSTR(email, '@') + 1) AS domain, COUNT(*) AS count FROM users GROUP BY SUBSTRING(email, INSTR(email, '@') + 1); ");
+        Obj countedDomains = Obj();
+
+        foreach (var domain in domians)
+        {
+            countedDomains[domain.domain] = domain.count;
+        }
+        return countedDomains;
+    }
+
     // Now write the two last ones yourself!
     // See: https://sys23m-jensen.lms.nodehill.se/uploads/videos/2021-05-18T15-38-54/sysa-23-presentation-2024-05-02-updated.html#8
 }

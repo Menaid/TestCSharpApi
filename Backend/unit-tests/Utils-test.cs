@@ -87,11 +87,25 @@ public class UtilsTest(Xlog Console)
         Assert.Equal(usersBeforeRemoval - expectedDecrese, usersAfterRemovalAfter);
     }
 
-    // [Fact]
-    // public void TestCountDomainsFromUserEmails()
-    // {
-
-    // }
+    [Fact]
+    public void TestCountDomainsFromUserEmails()
+    {
+        Arr usersInDb = SQLQuery("SELET email FROM users");
+        Obj domainsInDb = Obj();
+        foreach (var user in usersInDb)
+        {
+            string domain = user.email.Split('@')[1];
+            if (!domainsInDb.HasKey(domain))
+            {
+                domainsInDb[domain] = 1;
+            }
+            else
+            {
+                domainsInDb[domain]++;
+            }
+        }
+        Assert.Equivalent(domainsInDb, Utils.CountDomainsFromUseremails());
+    }
 
     // Now write the two last ones yourself!
     // See: https://sys23m-jensen.lms.nodehill.se/uploads/videos/2021-05-18T15-38-54/sysa-23-presentation-2024-05-02-updated.html#8
