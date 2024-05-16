@@ -53,27 +53,27 @@ public class UtilsTest(Xlog Console)
         Assert.Equal(expected, Utils.RemoveBadWords(original, replaceWith));
     }
 
-    [Fact]
-    public void TestCreateMockUsers()
-    {
-        // Get all users from the database
-        Arr usersInDb = SQLQuery("SELECT email FROM users");
-        Arr emailsInDb = usersInDb.Map(user => user.email);
-        // Only keep the mock users not already in db
-        Arr mockUsersNotInDb = mockUsers.Filter(
-            mockUser => !emailsInDb.Contains(mockUser.email)
-        );
-        // Get the result of running the method in our code
-        var result = Utils.CreateMockUsers();
-        // Assert that the CreateMockUsers only return
-        // newly created users in the db
-        Console.WriteLine($"The test expected that {mockUsersNotInDb.Length} users should be added.");
-        Console.WriteLine($"And {result.Length} users were added.");
-        Console.WriteLine("The test also asserts that the users added " +
-            "are equivalent (the same) as the expected users!");
-        Assert.Equivalent(mockUsersNotInDb, result);
-        Console.WriteLine("The test passed!");
-    }
+    // [Fact]
+    // public void TestCreateMockUsers()
+    // {
+    //     // Get all users from the database
+    //     Arr usersInDb = SQLQuery("SELECT email FROM users");
+    //     Arr emailsInDb = usersInDb.Map(user => user.email);
+    //     // Only keep the mock users not already in db
+    //     Arr mockUsersNotInDb = mockUsers.Filter(
+    //         mockUser => !emailsInDb.Contains(mockUser.email)
+    //     );
+    //     // Get the result of running the method in our code
+    //     var result = Utils.CreateMockUsers();
+    //     // Assert that the CreateMockUsers only return
+    //     // newly created users in the db
+    //     Console.WriteLine($"The test expected that {mockUsersNotInDb.Length} users should be added.");
+    //     Console.WriteLine($"And {result.Length} users were added.");
+    //     Console.WriteLine("The test also asserts that the users added " +
+    //         "are equivalent (the same) as the expected users!");
+    //     Assert.Equivalent(mockUsersNotInDb, result);
+    //     Console.WriteLine("The test passed!");
+    // }
 
     [Fact]
     public void TestRemoveMockUsers()
@@ -87,25 +87,25 @@ public class UtilsTest(Xlog Console)
         Assert.Equal(usersBeforeRemoval - expectedDecrese, usersAfterRemovalAfter);
     }
 
-    [Fact]
-    public void TestCountDomainsFromUserEmails()
-    {
-        Arr usersInDb = SQLQuery("SELET email FROM users");
-        Obj domainsInDb = Obj();
-        foreach (var user in usersInDb)
-        {
-            string domain = user.email.Split('@')[1];
-            if (!domainsInDb.HasKey(domain))
-            {
-                domainsInDb[domain] = 1;
-            }
-            else
-            {
-                domainsInDb[domain]++;
-            }
-        }
-        Assert.Equivalent(domainsInDb, Utils.CountDomainsFromUseremails());
-    }
+    // [Fact]
+    // public void TestCountDomainsFromUserEmails()
+    // {
+    //     Arr usersInDb = SQLQuery("SELET email FROM users");
+    //     Obj domainsInDb = Obj();
+    //     foreach (var user in usersInDb)
+    //     {
+    //         string domain = user.email.Split('@')[1];
+    //         if (!domainsInDb.HasKey(domain))
+    //         {
+    //             domainsInDb[domain] = 1;
+    //         }
+    //         else
+    //         {
+    //             domainsInDb[domain]++;
+    //         }
+    //     }
+    //     Assert.Equivalent(domainsInDb, Utils.CountDomainsFromUseremails());
+    // }
 
     // Now write the two last ones yourself!
     // See: https://sys23m-jensen.lms.nodehill.se/uploads/videos/2021-05-18T15-38-54/sysa-23-presentation-2024-05-02-updated.html#8

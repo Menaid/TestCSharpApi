@@ -42,27 +42,27 @@ public static class Utils
         return comment[1..];
     }
 
-    public static Arr CreateMockUsers()
-    {
-        Arr successFullyWrittenUsers = Arr();
-        foreach (var user in mockUsers)
-        {
-            // user.password = "12345678";
-            var result = SQLQueryOne(
-                @"INSERT INTO users(firstName,lastName,email,password)
-                VALUES($firstName, $lastName, $email, $password)
-            ", user);
-            // If we get an error from the DB then we haven't added
-            // the mock users, if not we have so add to the successful list
-            if (!result.HasKey("error"))
-            {
-                // The specification says return the user list without password
-                user.Delete("password");
-                successFullyWrittenUsers.Push(user);
-            }
-        }
-        return successFullyWrittenUsers;
-    }
+    // public static Arr CreateMockUsers()
+    // {
+    //     Arr successFullyWrittenUsers = Arr();
+    //     foreach (var user in mockUsers)
+    //     {
+    //         // user.password = "12345678";
+    //         var result = SQLQueryOne(
+    //             @"INSERT INTO users(firstName,lastName,email,password)
+    //             VALUES($firstName, $lastName, $email, $password)
+    //         ", user);
+    //         // If we get an error from the DB then we haven't added
+    //         // the mock users, if not we have so add to the successful list
+    //         if (!result.HasKey("error"))
+    //         {
+    //             // The specification says return the user list without password
+    //             user.Delete("password");
+    //             successFullyWrittenUsers.Push(user);
+    //         }
+    //     }
+    //     return successFullyWrittenUsers;
+    // }
 
     public static Arr RemoveMockUsers()
     {
@@ -100,17 +100,17 @@ public static class Utils
     // }
 
 
-    public static Obj CountDomainsFromUseremails()
-    {
-        Arr domians = SQLQueryOne("SELECT SUBSTRING(email, INSTR(email, '@') + 1) AS domain, COUNT(*) AS count FROM users GROUP BY SUBSTRING(email, INSTR(email, '@') + 1); ");
-        Obj countedDomains = Obj();
+    // public static Obj CountDomainsFromUseremails()
+    // {
+    //     Arr domians = SQLQueryOne("SELECT SUBSTRING(email, INSTR(email, '@') + 1) AS domain, COUNT(*) AS count FROM users GROUP BY SUBSTRING(email, INSTR(email, '@') + 1); ");
+    //     Obj countedDomains = Obj();
 
-        foreach (var domain in domians)
-        {
-            countedDomains[domain.domain] = domain.count;
-        }
-        return countedDomains;
-    }
+    //     foreach (var domain in domians)
+    //     {
+    //         countedDomains[domain.domain] = domain.count;
+    //     }
+    //     return countedDomains;
+    // }
 
     // Now write the two last ones yourself!
     // See: https://sys23m-jensen.lms.nodehill.se/uploads/videos/2021-05-18T15-38-54/sysa-23-presentation-2024-05-02-updated.html#8
