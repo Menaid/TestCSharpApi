@@ -71,13 +71,14 @@ public static class Utils
     //     Arr mockUsersInDb = mockUsers.Filter(mockUser => emailsInDb.Contains(mockUser.email));
     //     Arr deletedMockUsers = Arr();
 
-        foreach (var user in mockUsersInDb)
-        {
-            SQLQueryOne("DELETE FROM users WHERE email = $email", user);
-            deletedMockUsers.Push(user);
-        }
-        return deletedMockUsers;
-    }
+    //     foreach (var user in mockUsersInDb)
+    //     {
+    //         SQLQueryOne("DELETE FROM users WHERE email = $email", user);
+    //         deletedMockUsers.Push(user);
+    //     }
+    //     return deletedMockUsers;
+    // }
+
 
     public static Obj CountDomainsFromUseremails()
     {
