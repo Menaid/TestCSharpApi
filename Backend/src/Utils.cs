@@ -75,7 +75,6 @@ public static class Utils
         {
             SQLQueryOne("DELETE FROM users WHERE email = $email", user);
             deletedMockUsers.Push(user);
-            Console.WriteLine(deletedMockUsers);
         }
         return deletedMockUsers;
     }
