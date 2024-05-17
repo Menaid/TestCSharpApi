@@ -64,12 +64,13 @@ public static class Utils
     //     return successFullyWrittenUsers;
     // }
 
-    // public static Arr RemoveMockUsers()
+     // public static Arr RemoveMockUsers()
     // {
     //     Arr usersInDb = SQLQuery("SELECT email FROM users");
     //     Arr emailsInDb = usersInDb.Map(user => user.email);
     //     Arr mockUsersInDb = mockUsers.Filter(mockUser => emailsInDb.Contains(mockUser.email));
     //     Arr deletedMockUsers = Arr();
+
 
     //     foreach (var user in mockUsersInDb)
     //     {
@@ -78,7 +79,6 @@ public static class Utils
     //     }
     //     return deletedMockUsers;
     // }
-
 
     public static Obj CountDomainsFromUseremails()
     {
