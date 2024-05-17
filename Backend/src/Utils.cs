@@ -79,26 +79,6 @@ public static class Utils
     //     return deletedMockUsers;
     // }
 
-    // public static Arr RemoveMockUsers()
-    // {
-    //     Arr removedMockUsers = Arr();
-    //     var mockUserEmails = mockUsers.Map(user => user.email).ToList();
-
-    //     Arr emailsInDb = SQLQuery("SELECT email FROM users");
-
-    //     foreach (var user in mockUsers)
-    //     {
-    //         if (emailsInDb.Contains(user.email)) 
-    //         {
-    //             SQLQueryOne("DELETE FROM users WHERE email = $email", new { email = user.email });
-    //             removedMockUsers.Push(user.Clone().Remove("password")); 
-    //         }
-    //     }
-
-    //     return removedMockUsers;
-    // }
-
-
     public static Obj CountDomainsFromUseremails()
     {
         Arr domains = SQLQuery("SELECT SUBSTRING(email, INSTR(email, '@') + 1) AS domain, COUNT(*) AS count FROM users GROUP BY SUBSTRING(email, INSTR(email, '@') + 1); ");
