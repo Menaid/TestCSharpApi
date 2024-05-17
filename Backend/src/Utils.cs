@@ -64,40 +64,20 @@ public static class Utils
     //     return successFullyWrittenUsers;
     // }
 
-    // public static Arr RemoveMockUsers()
+     // public static Arr RemoveMockUsers()
     // {
     //     Arr usersInDb = SQLQuery("SELECT email FROM users");
     //     Arr emailsInDb = usersInDb.Map(user => user.email);
     //     Arr mockUsersInDb = mockUsers.Filter(mockUser => emailsInDb.Contains(mockUser.email));
     //     Arr deletedMockUsers = Arr();
 
-        foreach (var user in mockUsersInDb)
-        {
-            SQLQueryOne("DELETE FROM users WHERE email = $email", user);
-            deletedMockUsers.Push(user);
-        }
-        return deletedMockUsers;
-    }
-
-    // public static Arr RemoveMockUsers()
-    // {
-    //     Arr removedMockUsers = Arr();
-    //     var mockUserEmails = mockUsers.Map(user => user.email).ToList();
-
-    //     Arr emailsInDb = SQLQuery("SELECT email FROM users");
-
-    //     foreach (var user in mockUsers)
-    //     {
-    //         if (emailsInDb.Contains(user.email)) 
-    //         {
-    //             SQLQueryOne("DELETE FROM users WHERE email = $email", new { email = user.email });
-    //             removedMockUsers.Push(user.Clone().Remove("password")); 
-    //         }
-    //     }
-
-    //     return removedMockUsers;
+    //    foreach (var user in mockUsersInDb)
+    //    {
+    //        SQLQueryOne("DELETE FROM users WHERE email = $email", user);
+    //        deletedMockUsers.Push(user);
+    //    }
+    //    return deletedMockUsers;
     // }
-
 
     public static Obj CountDomainsFromUseremails()
     {
