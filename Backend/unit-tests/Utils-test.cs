@@ -75,37 +75,37 @@ public class UtilsTest(Xlog Console)
     //     Console.WriteLine("The test passed!");
     // }
 
-    [Fact]
-    public void TestRemoveMockUsers()
-    {
-        var result = SQLQueryOne("SELECT COUNT(*) AS antal FROM users");
-        int usersBeforeRemoval = (int)result.antal;
-        Utils.RemoveMockUsers();
-        var resultAfterRemoval = SQLQueryOne("SELECT COUNT(*) AS antal FROM users");
-        var usersAfterRemovalAfter = (int)resultAfterRemoval.antal;
-        int expectedDecrese = mockUsers.Length;
-        Assert.Equal(usersBeforeRemoval - expectedDecrese, usersAfterRemovalAfter);
-    }
-
     // [Fact]
-    // public void TestCountDomainsFromUserEmails()
+    // public void TestRemoveMockUsers()
     // {
-    //     Arr usersInDb = SQLQuery("SELET email FROM users");
-    //     Obj domainsInDb = Obj();
-    //     foreach (var user in usersInDb)
-    //     {
-    //         string domain = user.email.Split('@')[1];
-    //         if (!domainsInDb.HasKey(domain))
-    //         {
-    //             domainsInDb[domain] = 1;
-    //         }
-    //         else
-    //         {
-    //             domainsInDb[domain]++;
-    //         }
-    //     }
-    //     Assert.Equivalent(domainsInDb, Utils.CountDomainsFromUseremails());
+    //     var result = SQLQueryOne("SELECT COUNT(*) AS antal FROM users");
+    //     int usersBeforeRemoval = (int)result.antal;
+    //     Utils.RemoveMockUsers();
+    //     var resultAfterRemoval = SQLQueryOne("SELECT COUNT(*) AS antal FROM users");
+    //     var usersAfterRemovalAfter = (int)resultAfterRemoval.antal;
+    //     int expectedDecrese = mockUsers.Length;
+    //     Assert.Equal(usersBeforeRemoval - expectedDecrese, usersAfterRemovalAfter);
     // }
+
+    [Fact]
+    public void TestCountDomainsFromUserEmails()
+    {
+        Arr usersInDb = SQLQuery("SELECT email FROM users");
+        Obj domainsInDb = Obj();
+        foreach (var user in usersInDb)
+        {
+            string domain = user.email.Split('@')[1];
+            if (!domainsInDb.HasKey(domain))
+            {
+                domainsInDb[domain] = 1;
+            }
+            else
+            {
+                domainsInDb[domain]++;
+            }
+        }
+        Assert.Equivalent(domainsInDb, Utils.CountDomainsFromUseremails());
+    }
 
     // Now write the two last ones yourself!
     // See: https://sys23m-jensen.lms.nodehill.se/uploads/videos/2021-05-18T15-38-54/sysa-23-presentation-2024-05-02-updated.html#8
