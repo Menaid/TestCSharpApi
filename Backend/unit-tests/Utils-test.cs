@@ -79,6 +79,12 @@ public class UtilsTest(Xlog Console)
     public void TestRemoveMockUsers()
     {
         Utils.CreateMockUsers();
+
+        // SELECT all users FROM the DB
+        // Check which of them that are in mockusers
+        // Create a new Arr with the once that are in db AND in mockers
+        // This should be the same Assert.Equality as the result from calling Utils.RemoveMockUsers
+
         var result = SQLQueryOne("SELECT COUNT(*) AS antal FROM users");
         int usersBeforeRemoval = (int)result.antal;
         Utils.RemoveMockUsers();
