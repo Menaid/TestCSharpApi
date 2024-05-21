@@ -70,7 +70,7 @@ public class UtilsTest(Xlog Console)
         Console.WriteLine($"The test expected that {mockUsersNotInDb.Length} users should be added.");
         Console.WriteLine($"And {result.Length} users were added.");
         Console.WriteLine("The test also asserts that the users added " +
-            "are equivalent (the same) as the expected users!");
+            "are equivalent (the same) to the expected users!");
         Assert.Equivalent(mockUsersNotInDb, result);
         Console.WriteLine("The test passed!");
     }
@@ -80,18 +80,17 @@ public class UtilsTest(Xlog Console)
     {
         Utils.CreateMockUsers();
 
-        // SELECT all users FROM the DB
-        // Check which of them that are in mockusers
-        // Create a new Arr with the once that are in db AND in mockers
-        // This should be the same Assert.Equality as the result from calling Utils.RemoveMockUsers
+        Arr usersInDb = SQLQuery("SELECT * FROM users");
+        Console.WriteLine("HOW MANY USERS IN DB? " + usersInDb.Length);
+        Arr emailsInDb = usersInDb.Map(user => user.email);
+        Arr mockUsersInDb = mockUsers.Filter(mockUser => emailsInDb.Contains(mockUser.email));
+        Arr removedEmails = Arr();
+        var remainingUsersInDb = SQLQuery("SELECT email FROM users");
+        Arr remainingEmailsInDb = remainingUsersInDb.Map(user => user.email);
 
-        var result = SQLQueryOne("SELECT COUNT(*) AS antal FROM users");
-        int usersBeforeRemoval = (int)result.antal;
-        Utils.RemoveMockUsers();
-        var resultAfterRemoval = SQLQueryOne("SELECT COUNT(*) AS antal FROM users");
-        var usersAfterRemovalAfter = (int)resultAfterRemoval.antal;
-        int expectedDecrese = mockUsers.Length;
-        Assert.Equal(usersBeforeRemoval - expectedDecrese, usersAfterRemovalAfter);
+        var result = Utils.RemoveMockUsers();
+        Console.WriteLine("HOW MANY USERS DID Utils.RemoveMockUsers return? " + result.Length);
+        Assert.Equivalent(mockUsersInDb, result);
     }
 
     [Fact]
@@ -113,6 +112,7 @@ public class UtilsTest(Xlog Console)
             }
         }
         Assert.Equivalent(domainsInDb, Utils.CountDomainsFromUseremails());
+        Utils.RemoveMockUsers();
     }
 
     // Now write the two last ones yourself!
